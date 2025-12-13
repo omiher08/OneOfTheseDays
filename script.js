@@ -6,20 +6,14 @@ const MONTH_NAMES = [
 const WEEKDAYS = ["L", "M", "X", "J", "V", "S", "D"];
 
 /**
- * 🔐 SEGURIDAD: OFUSCACIÓN DE DATOS (REGENERADA Y VERIFICADA)
- * Cadenas generadas con: btoa(unescape(encodeURIComponent(JSON.stringify({ title: "TÍTULO AQUÍ", body: "TEXTO AQUÍ\nCON SALTOS DE LÍNEA" }))))
- * Esto asegura compatibilidad total con emojis UTF-8.
+ * 🔐 Cifrado
+ * Generar cadenas: btoa(unescape(encodeURIComponent(JSON.stringify({ title: "TÍTULO AQUÍ", body: "TEXTO AQUÍ\nCON SALTOS DE LÍNEA" }))))
  */
 const ENCRYPTED_DB = {
-    // Enero 1
     "2026-01-01": "eyJ0aXRsZSI6IkHDsW8gTnVldm8iLCJib2R5IjoiwqFCaWVudmVuaWRvIGFsIDIwMjYhIPCfkYIgXG5VbiBudWV2byBsaWJybyBkZSAzNjUgcMOhZ2luYXMgc2UgYWJyZSBob3kuIn0=",
-    // Febrero 14
     "2026-02-14": "eyJ0aXRsZSI6IlNhbiBWYWxlbnTDrW4iLCJib2R5IjoiRWwgYW1vciBlc3TDoSBlbiBsb3MgcGVxdWXDsW9zIGRldGFsbGVzLiDinaQifQ==",
-    // Junio 21
     "2026-06-21": "eyJ0aXRsZSI6IlNvbHN0aWNpbyIsImJvZHkiOiJFbCBkw61hIG3DoXMgbGFyZ28gZGVsIGHDsW8uIERpc2ZydXRhIGVsIHNvbC4ifQ==",
-    // Octubre 31
     "2026-10-31": "eyJ0aXRsZSI6IkhhbGxvd2VlbiIsImJvZHkiOiJMYSBub2NoZSBkZSBsYXMgYnJ1amFzLiDwn46QIn0=",
-    // Diciembre 25
     "2026-12-25": "eyJ0aXRsZSI6Ik5hdmlkYWQiLCJib2R5IjoiUGF6LCBhbW9yIHkgZXNwZXJhbnphIHBhcmEgZWwgcHLDs3hpbW8gYcOxby4ifQ=="
 };
 
@@ -29,7 +23,6 @@ async function getColombiaDate() {
         const data = await response.json();
         return new Date(data.datetime);
     } catch (error) {
-        console.warn("No se pudo obtener hora de Bogotá. Usando hora del dispositivo.");
         return new Date();
     }
 }
@@ -130,17 +123,16 @@ function openModal(dateStr, isLocked, isSpecial) {
     const titleEl = document.getElementById('modal-title');
     const bodyEl = document.getElementById('modal-body');
 
-    // 1. LIMPIEZA CRÍTICA: Borrar contenido anterior antes de nada
     titleEl.textContent = "";
     bodyEl.innerHTML = "";
-    titleEl.style.color = ""; // Resetear color
+    titleEl.style.color = "";
 
     overlay.classList.add('active');
 
     if (isLocked) {
         titleEl.textContent = "⏳ Paciencia...";
         titleEl.style.color = "#999";
-        bodyEl.innerHTML = `<p class="lock-message">Este día aún no ha llegado.<br>Vive el presente.</p>`;
+        bodyEl.innerHTML = `<p class="lock-message">Este día aún no ha llegado.<br>Lo bueno toma tiempo 🙃.</p>`;
         return;
     }
 
@@ -148,7 +140,6 @@ function openModal(dateStr, isLocked, isSpecial) {
         try {
             const encodedData = ENCRYPTED_DB[dateStr];
             
-            // Decodificación UTF-8 robusta para Emojis
             const jsonString = decodeURIComponent(escape(window.atob(encodedData)));
             const eventData = JSON.parse(jsonString);
 
@@ -160,7 +151,7 @@ function openModal(dateStr, isLocked, isSpecial) {
             console.error("Error al decodificar:", e);
             titleEl.textContent = "Error";
             titleEl.style.color = "red";
-            bodyEl.textContent = "No se pudo descifrar el mensaje secreto. Verifica la integridad de los datos.";
+            bodyEl.textContent = "No se pudo descifrar el mensaje.";
         }
     }
 }
