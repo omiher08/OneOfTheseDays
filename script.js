@@ -10,7 +10,7 @@ const WEEKDAYS = ["L", "M", "X", "J", "V", "S", "D"];
  * Generar cadenas: btoa(unescape(encodeURIComponent(JSON.stringify({ title: "TÍTULO AQUÍ", body: "TEXTO AQUÍ\nCON SALTOS DE LÍNEA" }))))
  */
 const ENCRYPTED_DB = {
-    "2026-01-01": "eyJ0aXRsZSI6IkHDsW8gTnVldm8iLCJib2R5IjoiwqFCaWVudmVuaWRvIGFsIDIwMjYhIPCfkYIgXG5VbiBudWV2byBsaWJybyBkZSAzNjUgcMOhZ2luYXMgc2UgYWJyZSBob3kuIn0=",
+    "2026-01-01": "eyJ0aXRsZSI6IkHDsW8gTnVldm8iLCJib2R5IjoiSG95IGVtcGllemEgdW4gYcOxbyBudWV2by4gVW4gYcOxbyBjb24gcmV0b3MsIGNvbiBjYW1iaW9zIHkgY29uIG11Y2hhcyBjb3NhcyBwb3IgZGVzY3VicmlyLCB0YW50byBwYXJhIHRpIGNvbW8gcGFyYSBtw60uIFkganVudG8gY29uIGVzdGUgYcOxbyB0YW1iacOpbiBlbXBpZXphIGVzdGUgcGVxdWXDsW8gcHJveWVjdG8gcXVlIGhpY2UgcGFyYSB0aSwgY29tbyB1bmEgZm9ybWEgZGUgYWNvbXBhw7FhcnRlIHBvY28gYSBwb2NvLiBZIGJ1ZW5vLCBxdWUgcGFzZSBsbyBxdWUgdGVuZ2EgcXVlIHBhc2FyLCBtaWVudHJhcyB2aXZpbW9zIGVzdGUgYcOxby4gVGUgcXVpZXJvIGRlbWFzaWFkbyDinaTvuI8sIGVzcGVybyBxdWUgbG8gc2VwYXMuIn0=",
     "2026-02-14": "eyJ0aXRsZSI6IlNhbiBWYWxlbnTDrW4iLCJib2R5IjoiRWwgYW1vciBlc3TDoSBlbiBsb3MgcGVxdWXDsW9zIGRldGFsbGVzLiDinaQifQ==",
     "2026-06-21": "eyJ0aXRsZSI6IlNvbHN0aWNpbyIsImJvZHkiOiJFbCBkw61hIG3DoXMgbGFyZ28gZGVsIGHDsW8uIERpc2ZydXRhIGVsIHNvbC4ifQ==",
     "2026-10-31": "eyJ0aXRsZSI6IkhhbGxvd2VlbiIsImJvZHkiOiJMYSBub2NoZSBkZSBsYXMgYnJ1amFzLiDwn46QIn0=",
@@ -40,10 +40,10 @@ async function initCalendar() {
     const grid = document.getElementById('calendar-grid');
     const nowAbs = await getColombiaDate();
     const colombiaString = nowAbs.toLocaleString('en-US', { timeZone: 'America/Bogota' });
-    const colombiaDate = new Date(colombiaString);
+    // const colombiaDate = new Date(colombiaString);
 
     // DESCOMENTAR PARA PRUEBAS (Simular fecha 2026):
-    // const colombiaDate = new Date(2026, 1, 15); 
+    const colombiaDate = new Date(2026, 0, 1); 
 
     const currentYear = colombiaDate.getFullYear();
     const currentMonth = colombiaDate.getMonth();
