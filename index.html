@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario 2026</title>
+    
+    <!-- Librerías Externas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <!-- Fuentes Tipográficas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,600&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Vinculación con el archivo CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- 1️⃣ Pantalla Inicial -->
+    <div id="intro-screen">
+        <p id="intro-text">Para que nunca olvides qué día es hoy...</p>
+    </div>
+
+    <!-- Contenedor Principal -->
+    <div class="container" id="main-container">
+        <!-- Header -->
+        <header>
+            <h1>Calendario 2026 ❤️</h1>
+        </header>
+
+        <!-- Calendario Grid -->
+        <div class="calendar-grid" id="calendar-grid">
+            <!-- Se llena con JS -->
+        </div>
+    </div>
+
+    <!-- Modal Popup -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-content">
+            <h2 class="modal-title" id="modal-title"></h2>
+            <div class="modal-body" id="modal-body"></div>
+            <button class="modal-close" id="modal-close">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- Vinculación con el archivo JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
