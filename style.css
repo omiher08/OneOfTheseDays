@@ -27,7 +27,7 @@ body {
     flex-direction: column;
     align-items: center;
     background: var(--bg-color-1);
-    animation: softBackground 30s infinite alternate ease-in-out;
+    animation: softBackground 18s infinite alternate ease-in-out;
 }
 
 @keyframes softBackground {
