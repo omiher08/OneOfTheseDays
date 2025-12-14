@@ -40,10 +40,10 @@ async function initCalendar() {
     const grid = document.getElementById('calendar-grid');
     const nowAbs = await getColombiaDate();
     const colombiaString = nowAbs.toLocaleString('en-US', { timeZone: 'America/Bogota' });
-    // const colombiaDate = new Date(colombiaString);
+    const colombiaDate = new Date(colombiaString);
 
     // DESCOMENTAR PARA PRUEBAS (Simular fecha 2026):
-    const colombiaDate = new Date(2026, 0, 1); 
+    // const colombiaDate = new Date(2026, 0, 1); 
 
     const currentYear = colombiaDate.getFullYear();
     const currentMonth = colombiaDate.getMonth();
