@@ -7,7 +7,7 @@ const WEEKDAYS = ["L", "M", "X", "J", "V", "S", "D"];
 
 /**
  * 🔐 Cifrado
- * Generar cadenas: btoa(unescape(encodeURIComponent(JSON.stringify({ title: "TÍTULO AQUÍ", body: "TEXTO AQUÍ\nCON SALTOS DE LÍNEA" }))))
+ * Generar cadenas: btoa(unescape(encodeURIComponent(JSON.stringify({ title: "TÍTULO AQUÍ", body: "TEXTO AQUÍ" }))))
  */
 const ENCRYPTED_DB = {
     "2026-01-01": "eyJ0aXRsZSI6IkHDsW8gTnVldm8iLCJib2R5IjoiSG95IGVtcGllemEgdW4gbnVldm8gYcOxby4gVW4gYcOxbyBjb24gcmV0b3MsIGNvbiBjYW1iaW9zIHkgY29uIG11Y2hhcyBjb3NhcyBwb3IgZGVzY3VicmlyLCB0YW50byBwYXJhIHRpIGNvbW8gcGFyYSBtw60uIFkganVudG8gY29uIGVzdGUgYcOxbyB0YW1iacOpbiBlbXBpZXphIGVzdGUgcGVxdWXDsW8gcHJveWVjdG8gcXVlIGhpY2UgcGFyYSB0aSwgY29tbyB1bmEgZm9ybWEgZGUgYWNvbXBhw7FhcnRlIHBvY28gYSBwb2NvLiBBaG9yYSBwb2RlbW9zIGNvbXByb2JhciBsYSBoaXDDs3Rlc2lzIGRlIHF1ZSBsYXMgY29zYXMgbcOhcyBib25pdGFzIG5vcyBwYXNhbiBhIGZpbmFsIGRlIGHDsW8gKGFob3JhIHNhYmVzIHBvciBxdcOpIHRlIGhhYmzDqSBkZSBlc28p4oCmIG9vb29vIHJlZnV0YXJsYSBtaWVudHJhcyBhZ3JlZ2Ftb3MgbnVldmFzIGNvc2FzIHF1ZSBub3MgcGFzZW4gZXN0ZSAyMDI2IPCfmYMuIFkgYnVlbm8sIHF1ZSBwYXNlIGxvIHF1ZSB0ZW5nYSBxdWUgcGFzYXIsIG1pZW50cmFzIHZpdmltb3MgZXN0ZSBhw7FvLiBUZSBxdWllcm8gZGVtYXNpYWRvIOKdpO+4jywgZXNwZXJvIHF1ZSBsbyBzZXBhcy4ifQ==",
@@ -68,10 +68,10 @@ async function initCalendar() {
     const grid = document.getElementById('calendar-grid');
     const nowAbs = await getColombiaDate();
     const colombiaString = nowAbs.toLocaleString('en-US', { timeZone: 'America/Bogota' });
-    // const colombiaDate = new Date(colombiaString);
+    const colombiaDate = new Date(colombiaString);
 
     // DESCOMENTAR PARA PRUEBAS (Simular fecha 2026):
-    const colombiaDate = new Date(2026, 11, 31); 
+    // const colombiaDate = new Date(2026, 11, 31); 
 
     const currentYear = colombiaDate.getFullYear();
     const currentMonth = colombiaDate.getMonth();
