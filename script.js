@@ -76,13 +76,8 @@ function initProgressBar(nowDate) {
     const start2026 = new Date(`${YEAR}-01-01T00:00:00-05:00`);
     const end2026 = new Date(`${YEAR+1}-01-01T00:00:00-05:00`);
 
-    const endOfCurrentDay = new Date(nowDate);
-    
-    endOfCurrentDay.setHours(23, 59, 59, 999);
-
     const totalYearMs = end2026 - start2026;
-    
-    const elapsedMs = endOfCurrentDay - start2026;
+    const elapsedMs = nowDate - start2026;
 
     let percent = 0;
 
@@ -93,8 +88,6 @@ function initProgressBar(nowDate) {
     } else {
         percent = (elapsedMs / totalYearMs) * 100;
     }
-
-    if (percent > 100) percent = 100;
 
     let displayPercent = Math.floor(percent * 100) / 100;
     
