@@ -105,10 +105,14 @@ async function initCalendar() {
     const grid = document.getElementById('calendar-grid');
     const nowAbs = await getColombiaDate();
     const colombiaString = nowAbs.toLocaleString('en-US', { timeZone: 'America/Bogota' });
-    // const colombiaDate = new Date(colombiaString);
+    const colombiaDate = new Date(colombiaString);
 
-    // DESCOMENTAR PARA PRUEBAS (Simular fecha 2026):
-    const colombiaDate = new Date(2026, 11, 31); 
+    initProgressBar(nowAbs);
+
+    // DESCOMENTAR PARA PRUEBAS (Simular fecha a mitad de año 2026):
+    // const simDate = new Date("2026-07-02T12:00:00-05:00");
+    // initProgressBar(simDate);
+    // const colombiaDate = simDate; 
 
     const currentYear = colombiaDate.getFullYear();
     const currentMonth = colombiaDate.getMonth();
@@ -180,6 +184,11 @@ async function initCalendar() {
             card.style.opacity = '1';
             card.style.transform = 'scale(1)';
         });
+
+        setTimeout(() => {
+            document.getElementById('progress-section').classList.add('visible');
+        }, 1400);
+
     }, 500);
 }
 
