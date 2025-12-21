@@ -69,6 +69,38 @@ function getFirstDayOfMonth(month, year) {
     return (day === 0 ? 6 : day - 1); 
 }
 
+async function initProgressBar(nowDate) {
+    const fillEl = document.getElementById('progress-fill');
+    const textEl = document.getElementById('progress-text');
+
+    const start2026 = new Date(`${YEAR}-01-01T00:00:00-05:00`);
+    const end2026 = new Date(`${YEAR+1}-01-01T00:00:00-05:00`);
+
+    const totalYearMs = end2026 - start2026;
+    const elapsedMs = nowDate - start2026;
+
+    let percent = 0;
+
+    if (elapsedMs <= 0) {
+        // Antes de 2026
+        percent = 0;
+    } else if (elapsedMs >= totalYearMs) {
+        // Después de 2026
+        percent = 100;
+    } else {
+        // Durante 2026
+        percent = (elapsedMs / totalYearMs) * 100;
+    }
+
+    let displayPercent = Math.floor(percent * 100) / 100;
+    
+    textEl.textContent = (displayPercent % 1 === 0) ? `${displayPercent}%` : `${displayPercent.toFixed(2)}%`;
+
+    setTimeout(() => {
+        fillEl.style.width = `${percent}%`;
+    }, 100);
+}
+
 async function initCalendar() {
     const grid = document.getElementById('calendar-grid');
     const nowAbs = await getColombiaDate();
