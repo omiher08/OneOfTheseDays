@@ -69,7 +69,7 @@ function getFirstDayOfMonth(month, year) {
     return (day === 0 ? 6 : day - 1); 
 }
 
-async function initProgressBar(nowDate) {
+function initProgressBar(nowDate) {
     const fillEl = document.getElementById('progress-fill');
     const textEl = document.getElementById('progress-text');
 
@@ -82,13 +82,10 @@ async function initProgressBar(nowDate) {
     let percent = 0;
 
     if (elapsedMs <= 0) {
-        // Antes de 2026
         percent = 0;
     } else if (elapsedMs >= totalYearMs) {
-        // Después de 2026
         percent = 100;
     } else {
-        // Durante 2026
         percent = (elapsedMs / totalYearMs) * 100;
     }
 
@@ -105,10 +102,13 @@ async function initCalendar() {
     const grid = document.getElementById('calendar-grid');
     const nowAbs = await getColombiaDate();
     const colombiaString = nowAbs.toLocaleString('en-US', { timeZone: 'America/Bogota' });
-    // const colombiaDate = new Date(colombiaString);
-
+    
+    // const colombiaDate = new Date(colombiaString); // Fecha Real
+    
     // DESCOMENTAR PARA PRUEBAS (Simular fecha 2026):
     const colombiaDate = new Date(2026, 11, 31); 
+    
+    initProgressBar(colombiaDate);
 
     const currentYear = colombiaDate.getFullYear();
     const currentMonth = colombiaDate.getMonth();
@@ -117,10 +117,12 @@ async function initCalendar() {
     const compareDate = new Date(colombiaDate);
     compareDate.setHours(0,0,0,0);
 
+    grid.innerHTML = "";
+
     for (let m = 0; m < 12; m++) {
         const monthCard = document.createElement('div');
         monthCard.className = 'month-card';
-        monthCard.style.transitionDelay = `${m * 0.05}s`;
+        monthCard.style.transitionDelay = `${m * 0.1}s`;
 
         const title = document.createElement('div');
         title.className = 'month-title';
@@ -181,6 +183,13 @@ async function initCalendar() {
             card.style.transform = 'scale(1)';
         });
     }, 500);
+
+    setTimeout(() => {
+        const progressSection = document.querySelector('.progress-section');
+        if(progressSection) {
+            progressSection.classList.add('visible');
+        }
+    }, 2200); 
 }
 
 function openModal(dateStr, isLocked, isSpecial) {
