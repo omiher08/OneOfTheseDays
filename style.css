@@ -70,6 +70,7 @@ h1 {
     gap: 20px;
     width: 100%;
     justify-content: center; 
+    margin-bottom: 80px;
 }
 
 .month-card {
