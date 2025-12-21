@@ -7,6 +7,11 @@
     --accent-gold: #FFAAF1;
     --accent-pulse: rgba(197, 160, 89, 0.4);
     --accent-red: #ff0000; 
+
+    --progress-bg: rgba(255, 255, 255, 0.5);
+    --progress-track: #eaddcf;
+    --progress-fill: #ffc1e3;
+    --progress-fill-shadow: rgba(255, 193, 227, 0.6);
     
     --font-display: 'Cormorant Garamond', serif;
     --font-body: 'Lora', serif;
@@ -144,6 +149,79 @@ h1 {
 
 .day-cell.special-day:hover {
     background: rgba(197, 160, 89, 0.1);
+}
+
+.progress-section {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 40px;
+    opacity: 0;
+    animation: fadeInProgress 1.5s ease forwards 1s;
+}
+
+@keyframes fadeInProgress {
+    to { opacity: 1; }
+}
+
+.progress-title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 2rem;
+    color: #6d4c41;
+    margin-bottom: 20px;
+}
+
+.progress-container-glass {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(5px);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+}
+
+.progress-track {
+    width: 100%;
+    height: 18px;
+    background-color: var(--progress-track);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%; /* Se calcula con JS */
+    background-color: var(--progress-fill);
+    background-image: linear-gradient(90deg, #ffd1e8, #ffc1e3);
+    border-radius: 20px;
+    transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: 0 0 10px var(--progress-fill-shadow);
+}
+
+.progress-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.progress-label {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: #7d6e68;
+    font-style: italic;
+}
+
+.progress-percent {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #6d4c41;
 }
 
 #intro-screen {
