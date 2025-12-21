@@ -157,15 +157,12 @@ h1 {
     margin: 0 auto;
     text-align: center;
     padding-bottom: 40px;
-    margin-top: 80px;
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 1.2s ease, transform 1.2s ease;
+    animation: fadeInProgress 1.5s ease forwards 1s;
 }
 
-.progress-section.visible {
-    opacity: 1;
-    transform: translateY(0);
+@keyframes fadeInProgress {
+    to { opacity: 1; }
 }
 
 .progress-title {
@@ -198,7 +195,7 @@ h1 {
 
 .progress-fill {
     height: 100%;
-    width: 0%;
+    width: 0%; /* Se calcula con JS */
     background-color: var(--progress-fill);
     background-image: linear-gradient(90deg, #ffd1e8, #ffc1e3);
     border-radius: 20px;
