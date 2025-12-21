@@ -103,10 +103,10 @@ async function initCalendar() {
     const nowAbs = await getColombiaDate();
     const colombiaString = nowAbs.toLocaleString('en-US', { timeZone: 'America/Bogota' });
     
-    // const colombiaDate = new Date(colombiaString); // Fecha Real
+    const colombiaDate = new Date(colombiaString); // Fecha Real
     
     // DESCOMENTAR PARA PRUEBAS (Simular fecha 2026):
-    const colombiaDate = new Date(2026, 06, 02);
+    // const colombiaDate = new Date(2026, 06, 02);
     
     initProgressBar(colombiaDate);
 
