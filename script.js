@@ -106,7 +106,8 @@ async function initCalendar() {
     // const colombiaDate = new Date(colombiaString); // Fecha Real
     
     // DESCOMENTAR PARA PRUEBAS (Simular fecha 2026):
-    const colombiaDate = new Date(2026, 05, 06); 
+    // const colombiaDate = new Date(2026, 05, 06); 
+    const colombiaDate = new Date(`2026-07-02T12:00:00-05:00`);
     
     initProgressBar(colombiaDate);
 
